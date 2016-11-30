@@ -9,14 +9,7 @@
  import java.awt.*;
  import java.awt.event.*;
  
- public Class DeliveryMenu extends JFrame, Customers, Inventory implements ActionListener {
- 	
- 	ArrayList<String> itemNames = new ArrayList();
- 	itemNames.add("Carrots");
- 	itemNames.add("Jack Daniels");
- 	itemNames.add("Potatoes");
- 	itemNames.add(")
- 	itemNames = item;
+ public class DeliveryMenu extends JFrame, Inventory implements ActionListener {
  	int quit;
  	JMenu customerMenu;
  	JMenu inventoryMenu;
@@ -24,6 +17,12 @@
  	public static void main(String[] args) {
  			DeliveryMeny myMenu = new DeliveryMenu();
  			myMenu.setVisible(true);
+ 			ArrayList itemNames = new ArrayList();
+ 			itemNames.add("Carrots");
+ 			itemNames.add("Jack Daniels");
+ 			itemNames.add("Potatoes");
+ 			itemNames.add("Taytos");
+ 			itemNames.add("Coca-Cola");
  	}
  	
  	public DeliveryMenu(); {
@@ -77,11 +76,13 @@
     		for (int i = 1; i <= 10; i++){
       		int id = idGenerator.nextInt(300);
       		itemID = id;
-      		
+    		}
+    		
       		Random quantityGenerator = new Random();
     		for (int i = 1; i <= 10; i++){
       		int quantity = quantityGenerator.nextInt(50);
-      		
+    		}
+    		
       		long sellbymin = Timestamp.valueOf("2016-12-05").getTime();
 			long sellbymax = Timestamp.valueOf("2016-12-15").getTime();
 			long difference = sellbymax - sellbymin + 1;
@@ -95,3 +96,22 @@
  		}
  	}
  }
+ 		
+ 		private void createCustomerMenu( ) {
+ 			JMenuItem quit;
+ 			quit = new JMenu("Quit");
+ 			quit.addActionListener(this);
+ 			JMenuItem customerDetails;
+ 			customerDetails = new JMenu("Customer Details");
+ 			customerDetails.addActionListener(this);
+ 			
+ 		}
+ 		
+ 		private void createInventoryMenu( ) {
+ 			JMenuItem inventoryDetails;
+ 			inventoryDetails = new JMenu("Inventory Details");
+ 			inventoryDetails.add("Inventory Details");
+ 		}
+ }
+ 
+ 		
