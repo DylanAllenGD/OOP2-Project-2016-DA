@@ -1,84 +1,87 @@
 /*@(#)Customers.java
  *
- *
  *@Dylan Allen
  *
- *Version 1.0 23/11/2016
+ *@Version 1.1 01/12/16
  */
-
-public class Customers {
-	//attributes(Customer details)
-	
-	private String cusName;
-	private char cusGender;
-	private int cusID;
-	private String cusAddr;
-	private int cusNum;
-	
-
-	//no-argument constructor
-	public Customers() {
-		setCusName("Unknown");
-		setCusGender('u');
-		setCusID(0);
-		setCusAddr("Unknown");
-		setCusNum(0);
-	}
-	
-	//three-argument constructor
-	public Customers(String cusName, char cusGender, int cusID, String cusAddr, String cusPass, int cusNum) {
-		setCusName(cusName);
-		setCusGender(cusGender);
-		setCusID(cusID);
-		setCusAddr(cusAddr);
-		setCusNum(cusNum);
-	}
-	
-	//mutator methods
-	public void setCusName(String cusName){
-		this.cusName = cusName;
-	}
-	
-	public void setCusGender(char cusGender){
-		this.cusGender = cusGender;
-	}
-	
-	public void setCusID(int cusID){
-		this.cusID = cusID;
-	}
-	
-	public void setCusAddr(String cusAddr){
-		this.cusAddr = cusAddr;
-	}
-	
-	public void setCusNum(int cusNum){
-		this.cusNum = cusNum;
-	}
-	
-	//accessor methods
-	public String getCusName(){
-		return cusName;
-	}
-	
-	public char getCusGender(){
-		return cusGender;
-	}
-	
-	public int getCusID(){
-		return cusID;
-	}
-	
-	public String getCusAddr(){
-		return cusAddr;
-	}
-	
-	public int getCusNum(){
-		return cusNum;
-	}
-	
-	//toString method for printing
-	
-	public String toString(){
-		return "Customer name: "+getCusName()+"\nCustomer Gender: "+getCusGender()+"\nCustomer ID Number: "+getCusID()+"\nCustomer Address: "+getCusAddr()+"\nCustomer Phone Number: "+getCusNum();
-	}
-}
+ 
+ import javax.swing.*;
+ import java.awt.*;
+ import java.awt.event.*;
+ 
+ public class Customers extends JFrame implements ActionListener {
+ 	
+ 	int cusNum;
+ 	String cusName;
+ 	int cusID;
+ 	String cusAddr;
+ 	int quit;
+ 	JMenu fileMenu;
+ 	JMenu customerMenu;
+ 	
+ 	public static void main(String[] args) {
+ 		Customers myMenu = new Customers();
+ 		myMenu.setVisible(true);
+ 	}
+ 	
+ 	public Customers() {
+ 		Container cPane;
+ 		setTitle("Customer Information Panel");
+ 		setSize(300,300);
+ 		setResizable(true);
+ 		setLocation(400,400);
+ 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+ 		cPane = getContentPane();
+ 		cPane.setLayout(new FlowLayout());
+ 		
+ 		createFileMenu();
+ 		createCustomerMenu();
+ 		
+ 		JMenuBar CustomerInterface = new JMenuBar();
+ 		setJMenuBar(CustomerInterface);
+ 		CustomerInterface.add(fileMenu);
+ 		CustomerInterface.add(customerMenu);
+ 	}
+ 	
+ 	public void actionPerformed(ActionEvent event) {
+ 		String menuName;
+ 		menuName = event.getActionCommand();
+ 		
+ 		if(menuName.equals("Quit")) {
+ 		quit = JOptionPane.showConfirmDialog(null,"Are you sure you want to quit?","Exit the program",JOptionPane.YES_NO_OPTION);
+ 		if(JOptionPane.YES_OPTION == quit) {
+ 			System.exit(0);
+ 			}	
+ 		}
+ 		else if(menuName.equals("Customer Details")) {
+ 			cusName = JOptionPane.showInputDialog("Please enter your name: ");
+ 			cusID = Integer.parseInt(JOptionPane.showInputDialog("Please assign yourself an ID number(less than 10 numbers): "));
+ 			cusAddr = JOptionPane.showInputDialog("Please enter your address: ");
+ 			cusNum = Integer.parseInt(JOptionPane.showInputDialog("Please enter your phone number: "));
+ 			}
+ 			else if(menuName.equals("Display Details")) {
+ 			JOptionPane.showMessageDialog(null,"Name: "+cusName+"\nID No.: "+cusID+"\nAddress: "+cusAddr+"\nPhone Number: "+cusNum);
+ 			}
+ 		}
+ 		
+ 		private void createFileMenu() {
+ 		JMenuItem quit;
+ 		fileMenu = new JMenu("File Menu");
+ 		quit = new JMenuItem("Quit");
+ 		quit.addActionListener(this);
+ 		fileMenu.add(quit);
+ 		}
+ 		
+ 		private void createCustomerMenu() {
+ 		JMenuItem customerDetails;
+ 		JMenuItem detailsDisplay;
+ 		customerMenu = new JMenu("Customer Menu");
+ 		customerDetails = new JMenuItem("Customer Details");
+ 		customerDetails.addActionListener(this);
+ 		customerMenu.add(customerDetails);
+ 		detailsDisplay = new JMenuItem("Display Details");
+ 		detailsDisplay.addActionListener(this);
+ 		customerMenu.add(detailsDisplay);
+ 		}	
+ 		
+ 	}

@@ -9,7 +9,7 @@
  import java.awt.*;
  import java.awt.event.*;
  
- public class DeliveryMenu extends JFrame, Inventory implements ActionListener {
+ public class DeliveryMenu extends JFrame implements ActionListener {
  	int quit;
  	JMenu customerMenu;
  	JMenu inventoryMenu;
@@ -60,15 +60,7 @@
  			}
  		}
  		else if(event.name="Customer Details"){
- 			cusName = JOptionPane.showInputDialog("Please enter your name: ");
- 			cusGender = JOptionPane.showInputDialog("Please enter your gender(m or f): ");
- 			cusID = JOptionPane.showInputDialog("Please assign yourself an ID number(less than 10 numbers): ");
- 			if(cusID.length >= 10){
- 			cusID = JOptionPane.showInputDialog("Sorry, that number was too long, please try again: ");
- 			}
- 			cusAddr = JOptionPane.showInputDialog("Please enter your address: ");
- 			cusNum = JOptionPane.showInputDialog("Please enter your phone number: ");
- 		}
+ 			
  		else if(event.name="Inventory Details"){
  			
  			
