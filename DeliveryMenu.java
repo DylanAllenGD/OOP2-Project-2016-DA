@@ -5,27 +5,24 @@
  *Version 1.0 29/11/16
  */
  
+ 
+ //Necessary API packages for the menu class
  import javax.swing.*;
  import java.awt.*;
  import java.awt.event.*;
  
+ //Menu class, the main class used as the GUI
+ 
  public class DeliveryMenu extends JFrame implements ActionListener {
  	int quit;
  	JMenu customerMenu;
- 	JMenu inventoryMenu;
  	
  	public static void main(String[] args) {
- 			DeliveryMeny myMenu = new DeliveryMenu();
+ 			DeliveryMenu myMenu = new DeliveryMenu();
  			myMenu.setVisible(true);
- 			ArrayList itemNames = new ArrayList();
- 			itemNames.add("Carrots");
- 			itemNames.add("Jack Daniels");
- 			itemNames.add("Potatoes");
- 			itemNames.add("Taytos");
- 			itemNames.add("Coca-Cola");
  	}
  	
- 	public DeliveryMenu(); {
+ 	public DeliveryMenu() {
  		Container cPane;
  		setTitle("Allen's Groceries");
  		setSize(400,400);
@@ -36,7 +33,6 @@
  		cPane.setLayout(new FlowLayout());
  		
  		createCustomerMenu();
- 		createInventoryMenu();
  		
  		Color c1 = new Color(0xa43d75);
  		Color c2 = new Color(0x671110);
@@ -45,65 +41,29 @@
  		setJMenuBar(DeliverySystem);
  		DeliverySystem.add(customerMenu);
  		DeliverySystem.setBackground(c1);
- 		DeliverySystem.add(inventoryMenu);
- 		DeliverySystem.setBackground(c2);
  	}
  	
- 	public void ActionPerformed(ActionEvent event) {
+ 	public void actionPerformed(ActionEvent event) {
  		String menuName;
  		menuName = event.getActionCommand();
  		
- 		if(event.name="Quit"){
+ 		if(menuName.equals("Quit")){
  			quit = JOptionPane.showConfirmDialog(null,"Are you sure you want to quit?","Exit Application",JOptionPane.YES_NO_OPTION);
  			if(JOptionPane.YES_OPTION == quit){
  				System.exit(0);
- 			}
- 		}
- 		else if(event.name="Customer Details"){
- 			
- 		else if(event.name="Inventory Details"){
- 			
- 			
- 			Random idGenerator = new Random();
-    		for (int i = 1; i <= 10; i++){
-      		int id = idGenerator.nextInt(300);
-      		itemID = id;
-    		}
-    		
-      		Random quantityGenerator = new Random();
-    		for (int i = 1; i <= 10; i++){
-      		int quantity = quantityGenerator.nextInt(50);
-    		}
-    		
-      		long sellbymin = Timestamp.valueOf("2016-12-05").getTime();
-			long sellbymax = Timestamp.valueOf("2016-12-15").getTime();
-			long difference = sellbymax - sellbymin + 1;
-			Timestamp rand = new Timestamp(sellbymin + (long)(Math.random() * difference));
-			sellBy = rand;
-			
-			Random costGenerator = new Random();
-    		for (int i = 1; i <= 10; i++){
-      		int itemcost = costGenerator.nextDouble(60.00);
-      		cost = itemcost;
- 		}
  	}
  }
+ 	}
  		
- 		private void createCustomerMenu( ) {
+ 		private void createCustomerMenu() {
  			JMenuItem quit;
- 			quit = new JMenu("Quit");
+ 			customerMenu = new JMenu("Customer Menu");
+ 			quit = new JMenuItem("Quit");
  			quit.addActionListener(this);
- 			JMenuItem customerDetails;
- 			customerDetails = new JMenu("Customer Details");
- 			customerDetails.addActionListener(this);
- 			
- 		}
- 		
- 		private void createInventoryMenu( ) {
- 			JMenuItem inventoryDetails;
- 			inventoryDetails = new JMenu("Inventory Details");
- 			inventoryDetails.add("Inventory Details");
+ 			customerMenu.add(quit);
  		}
  }
+
+
  
  		

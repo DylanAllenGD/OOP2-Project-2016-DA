@@ -6,7 +6,7 @@
  *Version 1.0 23/11/2016
  */
  
- public class Inventory{
+ public class Inventory extends DeliveryMenu {
  	private String item;
  	private int quantity;
  	private double cost;
