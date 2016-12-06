@@ -3,7 +3,7 @@
  *
  *#(@)Dylan Allen
  *
- *Version 1.0 23/11/2016
+ *Version 1.3 06/12/2016
  */
  
  public class Inventory extends DeliveryMenu {

@@ -2,7 +2,7 @@
  *
  *@Dylan Allen
  *
- *Version 1.0 29/11/16
+ *Version 1.3 06/12/16
  */
  
  
@@ -14,8 +14,13 @@
  //Menu class, the main class used as the GUI
  
  public class DeliveryMenu extends JFrame implements ActionListener {
+ 	
+ 	int idNum = (int)(Math.random() * 1000 + 1);
+ 	Customers customer = new Customers();
+ 	Inventory inventory = new Inventory();
  	int quit;
  	JMenu customerMenu;
+ 	JMenu inventoryMenu;
  	
  	public static void main(String[] args) {
  			DeliveryMenu myMenu = new DeliveryMenu();
@@ -33,6 +38,7 @@
  		cPane.setLayout(new FlowLayout());
  		
  		createCustomerMenu();
+ 		createInventoryMenu();
  		
  		Color c1 = new Color(0xa43d75);
  		Color c2 = new Color(0x671110);
@@ -41,6 +47,8 @@
  		setJMenuBar(DeliverySystem);
  		DeliverySystem.add(customerMenu);
  		DeliverySystem.setBackground(c1);
+ 		DeliverySystem.add(inventoryMenu);
+ 		DeliverySystem.setBackground(c2);
  	}
  	
  	public void actionPerformed(ActionEvent event) {
@@ -53,6 +61,15 @@
  				System.exit(0);
  	}
  }
+ 		else if(menuName.equals("Customer Details")){
+ 			customer.setCusName = JOptionPane.showInputDialog(null,"Please enter your name here: ");
+ 			customer.setCusAddr = JOptionPane.showInputDialog(null,"Please enter your address here: ");
+ 			customer.setCusNum = Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter your phone number here: "));
+ 			customer.setCusID(rNumber);
+ 			JOptionPane.showMessageDialog(null,customer.toString());
+ 			
+ 		}
+ 
  	}
  		
  		private void createCustomerMenu() {
